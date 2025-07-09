@@ -1,0 +1,25 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+# Example list: 1 -> 2 -> 3
+head = Node(1)
+head.next = Node(2)
+head.next.next = Node(3)
+
+def delete_from_beginning(head):
+    if head is None:
+        print("List is empty.")
+        return None
+    # Move head to next node, effectively removing first node
+    return head.next
+
+head = delete_from_beginning(head)
+
+# Print list to verify: should print 2 -> 3
+current = head
+while current:
+    print(current.data, end=" -> " if current.next else "")
+    current = current.next
+print()
