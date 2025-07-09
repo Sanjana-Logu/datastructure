@@ -1,0 +1,33 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+# Example list: 1 -> 2 -> 3
+head = Node(1)
+head.next = Node(2)
+head.next.next = Node(3)
+
+def delete_from_end(head):
+    if head is None:
+        print("List is empty.")
+        return None
+    if head.next is None:
+        # Only one node, so list becomes empty
+        return None
+    
+    current = head
+    # Traverse till second last node
+    while current.next.next:
+        current = current.next
+    current.next = None  # Remove last node
+    return head
+
+head = delete_from_end(head)
+
+# Print list to verify: should print 1 -> 2
+current = head
+while current:
+    print(current.data, end=" -> " if current.next else "")
+    current = current.next
+print()
