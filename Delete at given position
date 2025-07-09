@@ -1,0 +1,36 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+head = Node("A")
+head.next = Node("B")
+head.next.next = Node("C")
+head.next.next.next = Node("D")
+
+def delete_at_position(head, position):
+    if head is None:
+        print("List is empty.")
+        return None
+    if position == 1:
+        return head.next
+    current = head
+    for _ in range(position - 2):
+        if current.next is None:
+            print("Position out of range")
+            return head
+        current = current.next
+    if current.next is None:
+        print("Position out of range")
+        return head
+    current.next = current.next.next
+    return head
+
+head = delete_at_position(head, 3)
+
+# Display
+current = head
+while current:
+    print(current.data, end=" -> " if current.next else "")
+    current = current.next
+print()
